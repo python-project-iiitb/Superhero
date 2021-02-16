@@ -7,7 +7,7 @@ class super_hero:
 
         #creating the screen
         self.screen=pygame.display.set_mode((1200,800))
-        self.bg_color=(230,230,230)
+        self.bg_color=(67,47,117)
 
 
 
