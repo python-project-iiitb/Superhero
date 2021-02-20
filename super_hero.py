@@ -18,7 +18,7 @@ class super_hero:
                 if event.type==pygame.QUIT:
                     run=False
             self.screen.fill(self.bg_color)
-            pygame.display.flip()
+            pygame.display.update()
 
 
 if __name__=="__main__":
