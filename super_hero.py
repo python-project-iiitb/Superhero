@@ -1,28 +1,7 @@
 import pygame
 from classes import Line
 
-class Line:
-    def __init__(self,x1,y1,x2,y2,x1_ch,x2_ch):
-        self.x1=x1
-        self.y1=y1
-        self.x2=x2
-        self.y2=y2
-        self.x1_ch=x1_ch
-        self.x2_ch=x2_ch
-    def move_line(self):
-        if(self.x2==1200):
-            self.x1_ch=-1
-            self.x2_ch=-1
-        if(self.x1==0):
-            self.x1_ch=1
-            self.x2_ch=1
-        self.x1+=self.x1_ch
-        self.x2+=self.x2_ch
-        return self.x1,self.x2    
-        
-
-
-
+ 
 class super_hero:
     def __init__(self):
         pygame.init()   #initialising pygame
@@ -36,12 +15,6 @@ class super_hero:
 
     def run_sh(self):
         run=True
-        x1=200
-        y1=720
-        x2=1000
-        y2=720
-        x1_ch=1
-        x2_ch=1
         lines={
                 'l1':[200,720,1000,720,1,1],
                 'l2':[100,640,500,640,1,1],
