@@ -7,7 +7,7 @@ class super_hero:
         pygame.display.set_caption("SUPER HERO")
 
         #creating the screen
-        self.screen=pygame.display.set_mode((1200,800))
+        self.screen=pygame.display.set_mode((1200,920))
         self.bg_color=(255,253,240)
 
         
@@ -15,22 +15,22 @@ class super_hero:
     def run_sh(self):
         run=True
         lines={
-                'l1':[200,720,1000,720,1,1],
-                'l2':[100,640,500,640,1,1],
-                'l3':[600,640,1100,640,1,1],
-                'l4':[100,560,350,560,1,1],
-                'l5':[450,560,700,560,1,1],
-                'l6':[800,560,1050,560,1,1],
-                'p1':[200,80,1000,80,1,1],
-                'p2':[100,160,500,160,1,1],
-                'p3':[600,160,1100,160,1,1],
-                'p4':[100,240,350,240,1,1],
-                'p5':[450,240,700,240,1,1],
-                'p6':[800,240,1050,240,1,1]
+                'l1':[200,820,1000,820,1,1],
+                'l2':[100,720,500,720,1,1],
+                'l3':[600,720,1100,720,1,1],
+                'l4':[100,620,350,620,1,1],
+                'l5':[450,620,700,620,1,1],
+                'l6':[800,620,1050,620,1,1],
+                'p1':[200,100,1000,100,1,1],
+                'p2':[100,200,500,200,1,1],
+                'p3':[600,200,1100,200,1,1],
+                'p4':[100,300,350,300,1,1],
+                'p5':[450,300,700,300,1,1],
+                'p6':[800,300,1050,300,1,1]
                 }
-        sh_img=pygame.image.load("sh.png")
+        sh_img=pygame.image.load("sh2.png")
         sh_img_x = 25
-        sh_img_y = 760
+        sh_img_y = 880
         sh_img_ch_x=0
         sh_img_ch_y=0
         def sh(x,y,sh_img):
@@ -59,7 +59,16 @@ class super_hero:
             sh_img_x += sh_img_ch_x
             sh_img_y += sh_img_ch_y
             sh(sh_img_x,sh_img_y,sh_img)
-            print(sh_img_x)
+            print(str(sh_img_x) + " " + str(sh_img_y))
+
+            if(sh_img_x<=0):
+                sh_img_x=0
+            elif(sh_img_x>=1160):
+                sh_img_x=1160
+            elif(sh_img_y<=8):
+                sh_img_y=8
+            elif(sh_img_y>=870):
+                sh_img_y=870
 
 
             pygame.draw.line(self.screen,(0,0,0),[lines['l1'][0],lines['l1'][1]],[lines['l1'][2],lines['l1'][3]],5)
