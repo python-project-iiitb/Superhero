@@ -1,7 +1,6 @@
 import pygame
-from classes import Line
 
- 
+
 class super_hero:
     def __init__(self):
         pygame.init()   #initialising pygame
@@ -9,7 +8,7 @@ class super_hero:
 
         #creating the screen
         self.screen=pygame.display.set_mode((1200,800))
-        self.bg_color=(64,47,117)
+        self.bg_color=(255,253,240)
 
         
 
@@ -28,13 +27,40 @@ class super_hero:
                 'p4':[100,240,350,240,1,1],
                 'p5':[450,240,700,240,1,1],
                 'p6':[800,240,1050,240,1,1]
-                } 
+                }
+        sh_img=pygame.image.load("sh.png")
+        sh_img_x = 25
+        sh_img_y = 760
+        sh_img_ch_x=0
+        sh_img_ch_y=0
+        def sh(x,y,sh_img):
+            self.screen.blit(sh_img,(x,y))
+
 
         while run:
             for event in pygame.event.get():
-                if event.type==pygame.QUIT:
+                if event.type == pygame.QUIT:
                     run=False
+                if event.type==pygame.KEYDOWN:    
+                    if event.key == pygame.K_UP:
+                        sh_img_ch_y = -0.5
+                    if event.key == pygame.K_DOWN:
+                        sh_img_ch_y = +0.5
+                    if event.key == pygame.K_LEFT:
+                        sh_img_ch_x = -0.5
+                    if event.key == pygame.K_RIGHT:
+                        sh_img_ch_x = +0.5
+                if event.type==pygame.KEYUP:
+                    if(event.key == pygame.K_UP or event.key == pygame.K_DOWN or event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT):
+                        sh_img_ch_x=0
+                        sh_img_ch_y=0
             self.screen.fill(self.bg_color)
+        
+            sh_img_x += sh_img_ch_x
+            sh_img_y += sh_img_ch_y
+            sh(sh_img_x,sh_img_y,sh_img)
+            print(sh_img_x)
+
 
             pygame.draw.line(self.screen,(0,0,0),[lines['l1'][0],lines['l1'][1]],[lines['l1'][2],lines['l1'][3]],5)
             lines['l1'][0]+=lines['l1'][4]
@@ -107,6 +133,7 @@ class super_hero:
                 lines['p5'][4]=lines['p5'][5]=lines['p4'][4]=lines['p4'][5]=lines['p6'][4]=lines['p6'][5]=-1
             if(lines['p4'][0]==0):
                 lines['p5'][4]=lines['p5'][5]=lines['p4'][4]=lines['p4'][5]=lines['p6'][4]=lines['p6'][5]=1
+
     
             
     
