@@ -7,7 +7,7 @@ class super_hero:
         pygame.display.set_caption("SUPER HERO")
 
         #creating the screen
-        self.screen=pygame.display.set_mode((1200,600))
+        self.screen=pygame.display.set_mode((1200,920))
         self.bg_color=(255,253,240)
 
         
