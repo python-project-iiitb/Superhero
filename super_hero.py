@@ -7,7 +7,7 @@ class super_hero:
         pygame.display.set_caption("SUPER HERO")
 
         #creating the screen
-        self.screen=pygame.display.set_mode((1200,920))
+        self.screen=pygame.display.set_mode((1200,600))
         self.bg_color=(255,253,240)
 
         
@@ -59,7 +59,7 @@ class super_hero:
             sh_img_x += sh_img_ch_x
             sh_img_y += sh_img_ch_y
             sh(sh_img_x,sh_img_y,sh_img)
-            print(str(sh_img_x) + " " + str(sh_img_y))
+            #print(str(sh_img_x) + " " + str(sh_img_y))
 
             if(sh_img_x<=0):
                 sh_img_x=0
