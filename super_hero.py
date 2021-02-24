@@ -1,4 +1,5 @@
 import pygame
+import math
 
 
 class super_hero:
@@ -36,6 +37,17 @@ class super_hero:
         def sh(x,y,sh_img):
             self.screen.blit(sh_img,(x,y))
 
+        def line_out(x1,y1,x2,y2,sh_x,sh_y):
+            m = (y2-y1)/(x2-x1)               
+            d =-1*((m*sh_x)-(sh_y)+(y1-m*x1))/math.sqrt(1+m*m)            #line eq is m*x-y+(y1-m*x1)
+            if(sh_x > x1 and sh_x < x2):
+                if(d<(6) and d>-50):
+                    print("you are lost")
+                    exit(1)
+
+                
+                
+
 
         while run:
             for event in pygame.event.get():
@@ -59,7 +71,7 @@ class super_hero:
             sh_img_x += sh_img_ch_x
             sh_img_y += sh_img_ch_y
             sh(sh_img_x,sh_img_y,sh_img)
-            #print(str(sh_img_x) + " " + str(sh_img_y))
+           # print(str(sh_img_x) + " " + str(sh_img_y))
 
             if(sh_img_x<=0):
                 sh_img_x=0
@@ -143,8 +155,8 @@ class super_hero:
             if(lines['p4'][0]==0):
                 lines['p5'][4]=lines['p5'][5]=lines['p4'][4]=lines['p4'][5]=lines['p6'][4]=lines['p6'][5]=1
 
-    
-            
+            for i in lines.values():
+                line_out(i[0],i[1],i[2],i[3],sh_img_x,sh_img_y)
     
             pygame.display.update()
 
