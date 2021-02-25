@@ -55,13 +55,13 @@ class super_hero:
                     run=False
                 if event.type==pygame.KEYDOWN:    
                     if event.key == pygame.K_UP:
-                        sh_img_ch_y = -0.5
+                        sh_img_ch_y = -1
                     if event.key == pygame.K_DOWN:
-                        sh_img_ch_y = +0.5
+                        sh_img_ch_y = +1
                     if event.key == pygame.K_LEFT:
-                        sh_img_ch_x = -0.5
+                        sh_img_ch_x = -1
                     if event.key == pygame.K_RIGHT:
-                        sh_img_ch_x = +0.5
+                        sh_img_ch_x = +1
                 if event.type==pygame.KEYUP:
                     if(event.key == pygame.K_UP or event.key == pygame.K_DOWN or event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT):
                         sh_img_ch_x=0
@@ -82,78 +82,87 @@ class super_hero:
             elif(sh_img_y>=870):
                 sh_img_y=870
 
+            for i in lines.values():
+                pygame.draw.line(self.screen,(0,0,0),[i[0],i[1]],[i[2],i[3]],5)
+                i[0]+=i[4]
+                i[2]+=i[5]
+                if(i[2]==1200):
+                    i[4]=-1
+                    i[5]=-1
+                if(i[0]==0):
+                    i[4]=1
+                    i[5]=1
+            #pygame.draw.line(self.screen,(0,0,0),[lines['l1'][0],lines['l1'][1]],[lines['l1'][2],lines['l1'][3]],5)
+            #lines['l1'][0]+=lines['l1'][4]
+            #lines['l1'][2]+=lines['l1'][5]
+            #if(lines['l1'][2]==1200):
+             #  lines['l1'][4]=-1
+              # lines['l1'][5]=-1
+            #if(lines['l1'][0]==0):
+              # lines['l1'][4]=1
+               #lines['l1'][5]=1
 
-            pygame.draw.line(self.screen,(0,0,0),[lines['l1'][0],lines['l1'][1]],[lines['l1'][2],lines['l1'][3]],5)
-            lines['l1'][0]+=lines['l1'][4]
-            lines['l1'][2]+=lines['l1'][5]
-            if(lines['l1'][2]==1200):
-               lines['l1'][4]=-1
-               lines['l1'][5]=-1
-            if(lines['l1'][0]==0):
-               lines['l1'][4]=1
-               lines['l1'][5]=1
-
-            pygame.draw.line(self.screen,(0,0,0),[lines['l2'][0],lines['l2'][1]],[lines['l2'][2],lines['l2'][3]],5)
-            pygame.draw.line(self.screen,(0,0,0),[lines['l3'][0],lines['l3'][1]],[lines['l3'][2],lines['l2'][3]],5)
-            lines['l2'][0]+=lines['l2'][4]
-            lines['l2'][2]+=lines['l2'][5]
-            lines['l3'][0]+=lines['l3'][4]
-            lines['l3'][2]+=lines['l3'][5]
-            if(lines['l3'][2]==1200):
-                lines['l2'][4]=lines['l2'][5]=lines['l3'][4]=lines['l3'][5]=-1
-            if(lines['l2'][0]==0):
-                lines['l2'][4]=lines['l2'][5]=lines['l3'][4]=lines['l3'][5]=1
+            #pygame.draw.line(self.screen,(0,0,0),[lines['l2'][0],lines['l2'][1]],[lines['l2'][2],lines['l2'][3]],5)
+            #pygame.draw.line(self.screen,(0,0,0),[lines['l3'][0],lines['l3'][1]],[lines['l3'][2],lines['l2'][3]],5)
+            #lines['l2'][0]+=lines['l2'][4]
+            #lines['l2'][2]+=lines['l2'][5]
+            #lines['l3'][0]+=lines['l3'][4]
+            #lines['l3'][2]+=lines['l3'][5]
+            #if(lines['l3'][2]==1200):
+            #    lines['l2'][4]=lines['l2'][5]=lines['l3'][4]=lines['l3'][5]=-1
+            #if(lines['l2'][0]==0):
+               # lines['l2'][4]=lines['l2'][5]=lines['l3'][4]=lines['l3'][5]=1
             
-            pygame.draw.line(self.screen,(0,0,0),[lines['l4'][0],lines['l4'][1]],[lines['l4'][2],lines['l4'][3]],5)
-            pygame.draw.line(self.screen,(0,0,0),[lines['l5'][0],lines['l5'][1]],[lines['l5'][2],lines['l5'][3]],5)
-            pygame.draw.line(self.screen,(0,0,0),[lines['l6'][0],lines['l6'][1]],[lines['l6'][2],lines['l6'][3]],5)
-            lines['l4'][0]+=lines['l4'][4]
-            lines['l4'][2]+=lines['l4'][5]
-            lines['l5'][0]+=lines['l5'][4]
-            lines['l5'][2]+=lines['l5'][5]
-            lines['l6'][0]+=lines['l6'][4]
-            lines['l6'][2]+=lines['l6'][5]
-            if(lines['l6'][2]==1200):
-                lines['l5'][4]=lines['l5'][5]=lines['l4'][4]=lines['l4'][5]=lines['l6'][4]=lines['l6'][5]=-1
-            if(lines['l4'][0]==0):
-                lines['l5'][4]=lines['l5'][5]=lines['l4'][4]=lines['l4'][5]=lines['l6'][4]=lines['l6'][5]=1
+           # pygame.draw.line(self.screen,(0,0,0),[lines['l4'][0],lines['l4'][1]],[lines['l4'][2],lines['l4'][3]],5)
+            #pygame.draw.line(self.screen,(0,0,0),[lines['l5'][0],lines['l5'][1]],[lines['l5'][2],lines['l5'][3]],5)
+            #pygame.draw.line(self.screen,(0,0,0),[lines['l6'][0],lines['l6'][1]],[lines['l6'][2],lines['l6'][3]],5)
+            #lines['l4'][0]+=lines['l4'][4]
+            #lines['l4'][2]+=lines['l4'][5]
+            #lines['l5'][0]+=lines['l5'][4]
+            #lines['l5'][2]+=lines['l5'][5]
+            #lines['l6'][0]+=lines['l6'][4]
+            #lines['l6'][2]+=lines['l6'][5]
+            #if(lines['l6'][2]==1200):
+                #lines['l5'][4]=lines['l5'][5]=lines['l4'][4]=lines['l4'][5]=lines['l6'][4]=lines['l6'][5]=-1
+            #if(lines['l4'][0]==0):
+                #lines['l5'][4]=lines['l5'][5]=lines['l4'][4]=lines['l4'][5]=lines['l6'][4]=lines['l6'][5]=1
 
 
-            pygame.draw.line(self.screen,(0,0,0),[lines['p1'][0],lines['p1'][1]],[lines['p1'][2],lines['p1'][3]],5)
-            lines['p1'][0]+=lines['p1'][4]
-            lines['p1'][2]+=lines['p1'][5]
-            if(lines['p1'][2]==1200):
-               lines['p1'][4]=-1
-               lines['p1'][5]=-1
-            if(lines['p1'][0]==0):
-               lines['p1'][4]=1
-               lines['p1'][5]=1
+            #pygame.draw.line(self.screen,(0,0,0),[lines['p1'][0],lines['p1'][1]],[lines['p1'][2],lines['p1'][3]],5)
+            #lines['p1'][0]+=lines['p1'][4]
+            #lines['p1'][2]+=lines['p1'][5]
+            #if(lines['p1'][2]==1200):
+               #lines['p1'][4]=-1
+               #lines['p1'][5]=-1
+            #if(lines['p1'][0]==0):
+               #lines['p1'][4]=1
+               #lines['p1'][5]=1
 
-            pygame.draw.line(self.screen,(0,0,0),[lines['p2'][0],lines['p2'][1]],[lines['p2'][2],lines['p2'][3]],5)
-            pygame.draw.line(self.screen,(0,0,0),[lines['p3'][0],lines['p3'][1]],[lines['p3'][2],lines['p2'][3]],5)
-            lines['p2'][0]+=lines['p2'][4]
-            lines['p2'][2]+=lines['p2'][5]
-            lines['p3'][0]+=lines['p3'][4]
-            lines['p3'][2]+=lines['p3'][5]
-            if(lines['p3'][2]==1200):
-                lines['p2'][4]=lines['p2'][5]=lines['p3'][4]=lines['p3'][5]=-1
-            if(lines['p2'][0]==0):
-                lines['p2'][4]=lines['p2'][5]=lines['p3'][4]=lines['p3'][5]=1
+            #pygame.draw.line(self.screen,(0,0,0),[lines['p2'][0],lines['p2'][1]],[lines['p2'][2],lines['p2'][3]],5)
+            #pygame.draw.line(self.screen,(0,0,0),[lines['p3'][0],lines['p3'][1]],[lines['p3'][2],lines['p2'][3]],5)
+            #lines['p2'][0]+=lines['p2'][4]
+            #lines['p2'][2]+=lines['p2'][5]
+            #lines['p3'][0]+=lines['p3'][4]
+            #lines['p3'][2]+=lines['p3'][5]
+            #if(lines['p3'][2]==1200):
+                #lines['p2'][4]=lines['p2'][5]=lines['p3'][4]=lines['p3'][5]=-1
+            #if(lines['p2'][0]==0):
+                #lines['p2'][4]=lines['p2'][5]=lines['p3'][4]=lines['p3'][5]=1
 
 
-            pygame.draw.line(self.screen,(0,0,0),[lines['p4'][0],lines['p4'][1]],[lines['p4'][2],lines['p4'][3]],5)
-            pygame.draw.line(self.screen,(0,0,0),[lines['p5'][0],lines['p5'][1]],[lines['p5'][2],lines['p5'][3]],5)
-            pygame.draw.line(self.screen,(0,0,0),[lines['p6'][0],lines['p6'][1]],[lines['p6'][2],lines['p6'][3]],5)
-            lines['p4'][0]+=lines['p4'][4]
-            lines['p4'][2]+=lines['p4'][5]
-            lines['p5'][0]+=lines['p5'][4]
-            lines['p5'][2]+=lines['p5'][5]
-            lines['p6'][0]+=lines['p6'][4]
-            lines['p6'][2]+=lines['p6'][5]
-            if(lines['p6'][2]==1200):
-                lines['p5'][4]=lines['p5'][5]=lines['p4'][4]=lines['p4'][5]=lines['p6'][4]=lines['p6'][5]=-1
-            if(lines['p4'][0]==0):
-                lines['p5'][4]=lines['p5'][5]=lines['p4'][4]=lines['p4'][5]=lines['p6'][4]=lines['p6'][5]=1
+            #pygame.draw.line(self.screen,(0,0,0),[lines['p4'][0],lines['p4'][1]],[lines['p4'][2],lines['p4'][3]],5)
+            #pygame.draw.line(self.screen,(0,0,0),[lines['p5'][0],lines['p5'][1]],[lines['p5'][2],lines['p5'][3]],5)
+            #pygame.draw.line(self.screen,(0,0,0),[lines['p6'][0],lines['p6'][1]],[lines['p6'][2],lines['p6'][3]],5)
+            #lines['p4'][0]+=lines['p4'][4]
+            #lines['p4'][2]+=lines['p4'][5]
+            #lines['p5'][0]+=lines['p5'][4]
+            #lines['p5'][2]+=lines['p5'][5]
+            #lines['p6'][0]+=lines['p6'][4]
+            #lines['p6'][2]+=lines['p6'][5]
+            #if(lines['p6'][2]==1200):
+                #lines['p5'][4]=lines['p5'][5]=lines['p4'][4]=lines['p4'][5]=lines['p6'][4]=lines['p6'][5]=-1
+            #if(lines['p4'][0]==0):
+                #lines['p5'][4]=lines['p5'][5]=lines['p4'][4]=lines['p4'][5]=lines['p6'][4]=lines['p6'][5]=1
 
             for i in lines.values():
                 line_out(i[0],i[1],i[2],i[3],sh_img_x,sh_img_y)
