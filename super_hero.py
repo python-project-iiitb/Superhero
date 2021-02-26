@@ -49,15 +49,6 @@ class super_hero:
                 'c17':[575,265],
                 'c18':[925,265]
                 }
-
-
-
-
-
-
-
-
-
             
         sh_img=pygame.image.load("sh2.png")
         sh_img_x = 25
