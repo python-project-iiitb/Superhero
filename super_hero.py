@@ -4,6 +4,7 @@ import math
 
 class super_hero:
     def __init__(self):
+        self.screen = None
         pygame.init()  # initialising pygame
         pygame.display.set_caption("SUPER HERO")
 
@@ -68,6 +69,16 @@ class super_hero:
         fire_img = pygame.image.load("fire.png")
         cactus_img = pygame.image.load("cactus32.png")
 
+        # Score
+        score_value = 0
+        font = pygame.font.Font('game_over.ttf', 65)
+        textX = 50
+        textY = 35
+
+        def show_score(x, y):
+            score = font.render("Score :" + " " + str(score_value), True, (0, 0, 0))
+            self.screen.blit(score, (x, y))
+
         def sh(x, y, sh_img):
             self.screen.blit(sh_img, (x, y))
 
@@ -111,7 +122,6 @@ class super_hero:
         while run:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    print(score)
                     run = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
@@ -161,11 +171,10 @@ class super_hero:
                     i[4] = 1
                     i[5] = 1
 
-            score = 0
             for i in coins.values():
                 x = collect(i[0], i[1], sh_img_x, sh_img_y)
                 if x:
-                    score += 1
+                    score_value += 1
                     i[0] = 2000
                     i[1] = 2000
 
@@ -199,6 +208,7 @@ class super_hero:
             if (drag_out(sh_img_x, sh_img_y, 1050, 360) and sh_img_y > 340 and sh_img_y < 440):
                 print("you are lost")
                 exit(0)
+            show_score(textX, textY)
 
             pygame.display.update()
 
