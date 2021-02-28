@@ -9,7 +9,7 @@ class super_hero:
 
         # creating the screen
         self.screen = pygame.display.set_mode((1200, 920))
-        self.bg_color = (255, 253, 240)
+        self.bg_color = (170, 255, 255)
 
     def run_sh(self):
         run = True
@@ -45,33 +45,63 @@ class super_hero:
             'c15': [800, 165],
             'c16': [225, 265],
             'c17': [575, 265],
-            'c18': [925, 265]
+            'c18': [925, 265],
+            'c19': [25, 785],
+            'c20': [1140, 785],
+            'c21': [1140, 685],
+            'c22': [27, 705],
+            'c23': [1140, 165],
+            'c24': [30, 165],
+            'c25': [1140, 65],
+            'c26': [25, 65]
         }
 
         sh_img = pygame.image.load("sh2.png")
+        drg_img = pygame.image.load("dragon.png")
         sh_img_x = 25
         sh_img_y = 880
         sh_img_ch_x = 0
         sh_img_ch_y = 0
+        fire_img_x = 1050
         c_img = pygame.image.load("cn.png")  # including coin image.
+        # grass_img=pygame.image.load("grass.png")
+        fire_img = pygame.image.load("fire.png")
+        cactus_img = pygame.image.load("cactus32.png")
 
         def sh(x, y, sh_img):
             self.screen.blit(sh_img, (x, y))
+
+        def fire(x, y, f_img):
+            self.screen.blit(fire_img, (x, y))
+
+        def fire_out(s_x, s_y, f_x, f_y):
+            d = math.sqrt(pow(s_x - f_x, 2) + pow(s_y - f_y, 2))
+            if (d < 20):
+                return True
+            else:
+                return False
 
         def line_out(x1, y1, x2, y2, sh_x, sh_y):
             m = (y2 - y1) / (x2 - x1)
             d = -1 * ((m * sh_x) - (sh_y) + (y1 - m * x1)) / math.sqrt(1 + m * m)  # line eq is m*x-y+(y1-m*x1)
             if (sh_x > x1 and sh_x < x2):
-                if d < (6) and d > -50:
+                if (d < (3) and d > -50):
                     print("you are lost")
                     exit(1)
+
+        def drag_out(xs, ys, xd, yd):
+            d = math.sqrt(pow(xs - xd, 2) + pow(ys - yd, 2))
+            if (d < 90):
+                return True
+            else:
+                return False
 
         def coin(x, y, c_image):
             self.screen.blit(c_image, (x, y))
 
         def collect(c_x, c_y, s_x, s_y):
             d = math.sqrt(pow((c_x - s_x), 2) + pow((c_y - s_y), 2))
-            if (d < 10):
+            if (d < 35):
                 c_x = 2000
                 c_y = 2000
                 return True
@@ -104,7 +134,7 @@ class super_hero:
             sh(sh_img_x, sh_img_y, sh_img)
             # print(str(sh_img_x) + " " + str(sh_img_y))
 
-            if sh_img_x <= 0:
+            if (sh_img_x <= 0):
                 sh_img_x = 0
             elif (sh_img_x >= 1160):
                 sh_img_x = 1160
@@ -113,14 +143,21 @@ class super_hero:
             elif (sh_img_y >= 870):
                 sh_img_y = 870
 
+            if (sh_img_x == 20 and sh_img_y >= 0):
+                print("lost")
+                exit(0)
+            if (sh_img_x == 1140 and sh_img_y >= 0):
+                print('lost')
+                exit(0)
+
             for i in lines.values():
                 pygame.draw.line(self.screen, (0, 0, 0), [i[0], i[1]], [i[2], i[3]], 5)
                 i[0] += i[4]
                 i[2] += i[5]
-                if i[2] == 1200:
+                if (i[2] == 1200):
                     i[4] = -1
                     i[5] = -1
-                if i[0] == 0:
+                if (i[0] == 0):
                     i[4] = 1
                     i[5] = 1
 
@@ -137,6 +174,31 @@ class super_hero:
 
             for i in lines.values():
                 line_out(i[0], i[1], i[2], i[3], sh_img_x, sh_img_y)
+
+            self.screen.blit(drg_img, (1050, 460))
+            self.screen.blit(drg_img, (1050, 360))
+            for i in range(0, 920, 40):
+                self.screen.blit(cactus_img, (3, i))
+                self.screen.blit(cactus_img, (1170, i))
+
+            fire_img_x -= 1
+            fire(fire_img_x, 490, fire_img)
+            fire(fire_img_x, 390, fire_img)
+
+            if (fire_img_x == 0):
+                fire_img_x = 1050
+            if (fire_out(sh_img_x, sh_img_y, fire_img_x, 490)):
+                print("you are lost")
+                exit(0)
+            if (fire_out(sh_img_x, sh_img_y, fire_img_x, 390)):
+                print("you are lost")
+                exit(0)
+            if (drag_out(sh_img_x, sh_img_y, 1050, 460) and sh_img_y > 440 and sh_img_y < 560):
+                print("you are lost")
+                exit(0)
+            if (drag_out(sh_img_x, sh_img_y, 1050, 360) and sh_img_y > 340 and sh_img_y < 440):
+                print("you are lost")
+                exit(0)
 
             pygame.display.update()
 
