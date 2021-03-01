@@ -10,7 +10,9 @@ class super_hero:
         pygame.display.set_caption("SUPER HERO")
 
         # displaying the screen
+        #dimentions of the screen
         self.screen = pygame.display.set_mode((1200, 920))
+        #background color of the screen
         self.bg_color = (170, 255, 255)
 
     def run_sh(self):
@@ -48,7 +50,7 @@ class super_hero:
         sh_img_ch_y = 0
         fire_img_x = 1050
 
-        # SCORE
+        # Calculation of the score
         score_value = 0
         font = pygame.font.Font('game_over.ttf',65)
         textX = 50
