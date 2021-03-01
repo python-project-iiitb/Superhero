@@ -114,7 +114,7 @@ class super_hero:
                     i[4] = 1
                     i[5] = 1
 
-            #collecting coins
+            #collecting the coins and adding it to the score
             for i in coins.values():
                 x = functions.collect(i[0], i[1], sh_img_x, sh_img_y)
                 if x:
@@ -148,7 +148,7 @@ class super_hero:
             if (fire_img_x == 0):
                 fire_img_x = 1050
 
-            # losing the game when burnt due to fire    
+            # losing the game when burnt due to fire (The loop ends)    
             if (functions.fire_out(sh_img_x, sh_img_y, fire_img_x, 490)):
                 print("you are lost")
                 run=False
@@ -156,7 +156,7 @@ class super_hero:
                 print("you are lost")
                 run=False
 
-            # losing the game when super_hero touches dragon    
+            # losing the game when super_hero touches dragon (The loop ends)   
             if (functions.drag_out(sh_img_x, sh_img_y, 1050, 460) and sh_img_y > 440 and sh_img_y < 560):
                 print("you are lost")
                 run=False
