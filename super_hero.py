@@ -10,11 +10,10 @@ class super_hero:
         pygame.display.set_caption("SUPER HERO")
 
         # displaying the screen
-        #dimentions of the screen
         self.screen = pygame.display.set_mode((1200, 920))
-        #background color of the screen
         self.bg_color = (170, 255, 255)
-
+        self.lost = 0
+        self.score = 0
     def run_sh(self):
         run = True
 
@@ -50,13 +49,12 @@ class super_hero:
         sh_img_ch_y = 0
         fire_img_x = 1050
 
-        # Calculation of the score
-        score_value = 0
+        # SCORE
         font = pygame.font.Font('game_over.ttf',65)
         textX = 50
         textY = 35
         def show_score(x, y):
-            score = font.render("Score :" + " " + str(score_value), True, (0, 0, 0))
+            score = font.render("Score :" + " " + str(self.score), True, (0, 0, 0))
             self.screen.blit(score, (x, y)) 
                    
 
@@ -100,6 +98,7 @@ class super_hero:
             # losing the game when touched by cactus
             if (functions.cactus_out(sh_img_x,sh_img_y)):
                 print("lost")
+                self.lost += 1
                 run=False
             
             # making all the planks move
@@ -114,11 +113,11 @@ class super_hero:
                     i[4] = 1
                     i[5] = 1
 
-            #collecting the coins and adding it to the score
+            #collecting coins
             for i in coins.values():
                 x = functions.collect(i[0], i[1], sh_img_x, sh_img_y)
                 if x:
-                    score_value += 1
+                    self.score += 1
                     i[0] = 2000
                     i[1] = 2000
 
@@ -129,6 +128,7 @@ class super_hero:
             # losing the game when touched by planks
             for i in lines.values():
                 if functions.line_out(i[0], i[1], i[2], i[3], sh_img_x, sh_img_y):
+                    self.lost += 1
                     run=False
 
 
@@ -148,27 +148,60 @@ class super_hero:
             if (fire_img_x == 0):
                 fire_img_x = 1050
 
-            # losing the game when burnt due to fire (The loop ends)    
+            # losing the game when burnt due to fire    
             if (functions.fire_out(sh_img_x, sh_img_y, fire_img_x, 490)):
                 print("you are lost")
+                self.lost += 1
                 run=False
             if (functions.fire_out(sh_img_x, sh_img_y, fire_img_x, 390)):
                 print("you are lost")
+                self.lost += 1
                 run=False
 
-            # losing the game when super_hero touches dragon (The loop ends)   
+            # losing the game when super_hero touches dragon    
             if (functions.drag_out(sh_img_x, sh_img_y, 1050, 460) and sh_img_y > 440 and sh_img_y < 560):
                 print("you are lost")
+                self.lost += 1
                 run=False
             if (functions.drag_out(sh_img_x, sh_img_y, 1050, 360) and sh_img_y > 340 and sh_img_y < 440):
                 print("you are lost")
+                self.lost += 1
                 run=False
 
-            show_score(textX,textY)    
+            show_score(textX,textY)
 
             pygame.display.update()
+
+    def lost_screen(self):
+        run = True
+        while run:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    run = False
+            #print("you are lost")
+            #print("score = ",self.score)
+            self.screen.fill(self.bg_color)
+            font = pygame.font.Font('game_over.ttf', 235)
+            textX = 250
+            textY = 200
+
+            def show_score(x, y):
+                sorry = font.render("SORRRYYY!!! ",True, (0, 0, 0))
+                lost = font.render("YOU ARE LOST",True, (0, 0, 0))
+                score = font.render("YOUR SCORE IS : "+ str(self.score),True, (0, 0, 0))
+                self.screen.blit(score, (x, y+200))
+                self.screen.blit(lost, (x, y))
+                self.screen.blit(sorry,(x, y-200))
+            show_score(250, 200)
+            cry_img = pygame.image.load("cry.png")
+            self.screen.blit(cry_img, (300,550))
+            pygame.display.update()
+
+
 
 
 if __name__ == "__main__":
     sh = super_hero()
     sh.run_sh()
+    if sh.lost != 0:
+        sh.lost_screen()
