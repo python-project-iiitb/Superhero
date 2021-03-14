@@ -12,12 +12,12 @@ class super_hero:
 
         # displaying the screen
         self.screen = pygame.display.set_mode((1200, 920))
-        self.bg_color = (170, 255, 255)
+        self.bg_color = (120, 220, 220)
         self.lost = 0
         self.score = 0
         self.start = 0
         self.user_name = ''
-        self.logo_img = pygame.image.load("logo.png")
+        self.logosh_img = pygame.image.load("logosh.png")
 
 
     def run_sh(self):
@@ -244,7 +244,7 @@ class super_hero:
                 self.screen.blit(Instruction, (x - 125, y + 300))
                 self.screen.blit(name, (x - 150, y - 50))
                 self.screen.blit(text_surface,(x + 200, y - 55))
-                self.screen.blit(self.logo_img, (x - 150, y + 100))
+                self.screen.blit(self.logosh_img, (x - 150, y + 100))
 
             show_details(300, 350)
             pygame.display.update()
