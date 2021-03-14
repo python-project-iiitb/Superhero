@@ -195,32 +195,36 @@ class super_hero:
                 self.screen.blit(sorry,(x, y-200))
             show_score(250, 200)
             cry_img = pygame.image.load("cry.png")
-            self.screen.blit(cry_img, (300,550))
+            self.screen.blit(cry_img, (300,500))
             pygame.display.update()
 
     def front_screen(self):
         run = True
         while run:
             for event in pygame.event.get():
-                if (event.type == pygame.QUIT):
+                if event.type == pygame.QUIT:
                     run = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        self.start  = 1
+                        self.start = 1
+                        run = False
             self.screen.fill(self.bg_color)
+            font = pygame.font.Font('game_over.ttf', 150)
+
+            textX = 250
+            textY = 200
+
+            def show_details(x, y):
+                welcome = font.render("Welcome to Super Hero ", True, (0, 0, 0))
+                self.screen.blit(welcome, (x, y - 200))
+            show_details(300,350)
             pygame.display.update()
-
-
-
-
-
 
 if __name__ == "__main__":
     sh = super_hero()
-    if(sh.start == 0):
-        sh.front_screen()
-    elif (sh.start == 1):
+    sh.front_screen()
+    if (sh.start == 1):
         sh.run_sh()
-    elif (sh.lost != 0):
+    if (sh.lost != 0):
         sh.lost_screen()
 
