@@ -1,3 +1,4 @@
+
 import pygame
 import math
 import functions
@@ -216,7 +217,11 @@ class super_hero:
 
             def show_details(x, y):
                 welcome = font.render("Welcome to Super Hero ", True, (0, 0, 0))
+                Instruction = font.render("Press Space bar to start the game", True, (0, 0, 0))
+                name = font.render("Enter your name: ",True, (0, 0, 0))
                 self.screen.blit(welcome, (x, y - 200))
+                self.screen.blit(Instruction,(x - 125, y + 300))
+                self.screen.blit(name,(x - 150, y - 50))
             show_details(300,350)
             pygame.display.update()
 
@@ -227,4 +232,3 @@ if __name__ == "__main__":
         sh.run_sh()
     if (sh.lost != 0):
         sh.lost_screen()
-
