@@ -14,6 +14,7 @@ class super_hero:
         self.bg_color = (170, 255, 255)
         self.lost = 0
         self.score = 0
+        self.start = 0
     def run_sh(self):
         run = True
 
@@ -197,11 +198,29 @@ class super_hero:
             self.screen.blit(cry_img, (300,550))
             pygame.display.update()
 
+    def front_screen(self):
+        run = True
+        while run:
+            for event in pygame.event.get():
+                if (event.type == pygame.QUIT):
+                    run = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        self.start  = 1
+            self.screen.fill(self.bg_color)
+            pygame.display.update()
+
+
+
 
 
 
 if __name__ == "__main__":
     sh = super_hero()
-    sh.run_sh()
-    if sh.lost != 0:
+    if(sh.start == 0):
+        sh.front_screen()
+    elif (sh.start == 1):
+        sh.run_sh()
+    elif (sh.lost != 0):
         sh.lost_screen()
+
