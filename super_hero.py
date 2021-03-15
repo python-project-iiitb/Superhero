@@ -22,7 +22,7 @@ class super_hero:
         self.score = 0
         self.start = 0
         self.user_name = ''
-        self.logosh_img = pygame.image.load("logosh.png")
+        #self.logosh_img = pygame.image.load("logosh.png")
         self.sh_img_x = 25
         self.sh_img_y = 880
         self.win = 0
@@ -55,15 +55,18 @@ class super_hero:
         sh_img = pygame.image.load("sh2.png")
         drg_img = pygame.image.load("dragon.png")
         fire_img = pygame.image.load("fire.png")
-        cactus_img = pygame.image.load("cactus.png")
+        cactus_img = pygame.image.load("cactus32.png")
         c_img = pygame.image.load("cn.png")
         flag_img = pygame.image.load("flag.png")
+        gunman_img=pygame.image.load("gunman.png")
+        bullet_img=pygame.image.load("bullet.png")
         #logo_img = pygame.image.load("logo.png")
 
         # setting the coodinates of all required images and planks
         sh_img_ch_x = 0
         sh_img_ch_y = 0
         fire_img_x = 1050
+        bullet_img_x=150
 
         # SCORE
         font = pygame.font.Font('game_over.ttf', 65)
@@ -151,7 +154,10 @@ class super_hero:
                     self.lost += 1
                     run = False
 
-            # displaying the images of dragon and cactus and flag
+            # displaying the images of dragon and cactus and flag and gunman
+            #self.screen.blit(bullet_img,(150,460))
+            #self.screen.blit(bullet_img,(1050,400))
+            self.screen.blit(gunman_img,(10,360))
             self.screen.blit(drg_img, (1050, 460))
             self.screen.blit(drg_img, (1050, 360))
             self.screen.blit(flag_img, (1050, -5))
@@ -159,14 +165,21 @@ class super_hero:
                 self.screen.blit(cactus_img, (3, i))
                 self.screen.blit(cactus_img, (1170, i))
 
+            #bullets by gunman
+            bullet_img_x+=1
+            functions.shoot(bullet_img_x,400,bullet_img,self.screen)
+            functions.shoot(bullet_img_x,460,bullet_img,self.screen)
+
             # fire by dragon
             fire_img_x -= 1
             functions.fire(fire_img_x, 490, fire_img, self.screen)
             functions.fire(fire_img_x, 390, fire_img, self.screen)
 
-            # bringing fire back to the dragon mouth once reaches end of the screen
+            # bringing fire and bullets back to the dragon mouth and gun once reaches end of the screen
             if (fire_img_x == 0):
                 fire_img_x = 1050
+            if(bullet_img_x == 1200):
+                bullet_img_x = 150
 
             # losing the game when burnt due to fire
             if (functions.fire_out(self.sh_img_x, self.sh_img_y, fire_img_x, 490)):
@@ -178,6 +191,17 @@ class super_hero:
                 self.lost += 1
                 run = False
 
+            #losing game when shot by bullet
+            if (functions.bullet_out(self.sh_img_x, self.sh_img_y, bullet_img_x, 400)):
+                print("you are lost")
+                self.lost += 1
+                run = False
+            if (functions.bullet_out(self.sh_img_x, self.sh_img_y, bullet_img_x, 460)):
+                print("you are lost")
+                self.lost += 1
+                run = False
+
+
             # losing the game when super_hero touches dragon
             if (functions.drag_out(self.sh_img_x, self.sh_img_y, 1050, 460) and self.sh_img_y > 440 and self.sh_img_y < 560):
                 print("you are lost")
@@ -187,6 +211,18 @@ class super_hero:
                 print("you are lost")
                 self.lost += 1
                 run = False
+
+            #losing game when super_hero touches gunman
+            if (functions.gunman_out(self.sh_img_x, self.sh_img_y, 10, 400) and self.sh_img_y > 440 and self.sh_img_y < 560):
+                print("you are lost")
+                self.lost += 1
+                run = False
+            if (functions.gunman_out(self.sh_img_x, self.sh_img_y, 10, 460) and self.sh_img_y > 340 and self.sh_img_y < 440):
+                print("you are lost")
+                self.lost += 1
+                run = False
+
+
 
             c = (self.sh_img_x - 1050)**2 + (self.sh_img_y + 5)**2 - 100**2
             if(c < 0):
@@ -283,7 +319,7 @@ class super_hero:
                 self.screen.blit(Instruction, (x - 125, y + 300))
                 self.screen.blit(name, (x - 150, y - 50))
                 self.screen.blit(text_surface, (x + 200, y - 55))
-                self.screen.blit(self.logosh_img, (x - 150, y + 100))
+                #elf.screen.blit(self.logosh_img, (x - 150, y + 100))
 
             show_details(300, 350)
             pygame.display.update()
