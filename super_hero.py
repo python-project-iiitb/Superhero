@@ -6,7 +6,6 @@ from pygame import mixer
 
 class super_hero:
     def __init__(self):
-
         mixer.init()
         # background music
         mixer.music.load("background_music.flac")
@@ -79,7 +78,7 @@ class super_hero:
             # an infinite loop to keep the screeen active
 
         while run:
-            if(self.win and self.score == 26):
+            if((self.win and self.score > 0) or self.lost != 0):
                 run = False
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -199,6 +198,10 @@ class super_hero:
     def win_screen(self):
         run = True
         while run:
+            mixer.init()
+            # background music
+            winner_sound = mixer.Sound("winner_sound.wav")
+            winner_sound.play()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
@@ -211,7 +214,7 @@ class super_hero:
     def lost_screen(self):
         run = True
         while run:
-            if(self.win and self.score == 26):
+            if(self.win and self.score > 0):
                 run = False
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -237,12 +240,15 @@ class super_hero:
             show_score(250, 200)
             cry_img = pygame.image.load("cry.png")
             self.screen.blit(cry_img, (300, 500))
+            mixer.init()
+            cry_sound = mixer.Sound("cry_sound.wav")  # cry sound
+            cry_sound.play()
             pygame.display.update()
 
     def front_screen(self):
         run = True
         while run:
-            if(self.win and self.score == 26):
+            if(self.win and self.score > 0):
                 run = False
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -290,5 +296,5 @@ if __name__ == "__main__":
         sh.run_sh()
     if (sh.lost != 0):
         sh.lost_screen()
-    if(sh.win and sh.score == 26):
+    if(sh.win and sh.score > 0):
         sh.win_screen()
