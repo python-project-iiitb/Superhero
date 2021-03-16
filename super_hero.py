@@ -5,6 +5,8 @@ from pygame import mixer
 
 
 class super_hero:
+    logo_img = pygame.image.load("logo.png")
+
     def __init__(self):
         mixer.init()
         # background music
@@ -22,7 +24,6 @@ class super_hero:
         self.score = 0
         self.start = 0
         self.user_name = ''
-        #self.logosh_img = pygame.image.load("logosh.png")
         self.sh_img_x = 25
         self.sh_img_y = 880
         self.win = 0
@@ -42,7 +43,7 @@ class super_hero:
 
         # dictionary of coins with their coordinates as value to the keys
         coins = {
-            'c1': [300, 785], 'c2': [600, 785], 'c3': [900, 785], 'c4': [300, 685], 'c5': [550, 685], 'c6': [800, 685],
+                'c1': [300, 785], 'c2': [600, 785], 'c3': [900, 785], 'c4': [300, 685], 'c5': [550, 685], 'c6': [800, 685],
             'c7': [225, 585], 'c8': [575, 585],
             'c9': [925, 585], 'c10': [300, 65], 'c11': [600, 65], 'c12': [900, 65], 'c13': [300, 165],
             'c14': [550, 165], 'c15': [800, 165], 'c16': [225, 265],
@@ -60,7 +61,6 @@ class super_hero:
         flag_img = pygame.image.load("flag.png")
         gunman_img=pygame.image.load("gunman.png")
         bullet_img=pygame.image.load("bullet.png")
-        #logo_img = pygame.image.load("logo.png")
 
         # setting the coodinates of all required images and planks
         sh_img_ch_x = 0
@@ -72,14 +72,13 @@ class super_hero:
         font = pygame.font.Font('game_over.ttf', 65)
         textX = 50
         textY = 35
-
         def show_score(x, y):
             score = font.render(
                 "Score :" + " " + str(self.score), True, (0, 0, 0))
             self.screen.blit(score, (x, y))
 
             # an infinite loop to keep the screeen active
-
+        count=0
         while run:
             if((self.win and self.score > 0) or self.lost != 0):
                 run = False
@@ -102,7 +101,6 @@ class super_hero:
                         sh_img_ch_x = 0
                         sh_img_ch_y = 0
             self.screen.fill(self.bg_color)
-
             self.sh_img_x += sh_img_ch_x
             self.sh_img_y += sh_img_ch_y
             functions.sh(self.sh_img_x, self.sh_img_y, sh_img, self.screen)
@@ -146,7 +144,7 @@ class super_hero:
 
             # displaying all coins
             for i in coins.values():
-                functions.coin(i[0], i[1], c_img, self.screen)
+                functions.coin(i[0], i[1], c_img, self.screen)        
 
             # losing the game when touched by planks
             for i in lines.values():
@@ -174,6 +172,7 @@ class super_hero:
             fire_img_x -= 1
             functions.fire(fire_img_x, 490, fire_img, self.screen)
             functions.fire(fire_img_x, 390, fire_img, self.screen)
+        
 
             # bringing fire and bullets back to the dragon mouth and gun once reaches end of the screen
             if (fire_img_x == 0):
@@ -258,24 +257,23 @@ class super_hero:
             # print("you are lost")
             # print("score = ",self.score)
             self.screen.fill(self.bg_color)
-            font = pygame.font.Font(None, 50)
+            font = pygame.font.Font(None, 70)
             textX = 250
             textY = 200
 
             def show_score(x, y):
                 sorry = font.render("SORRRYYY!!! ", True, (0, 0, 0))
                 lost = font.render("YOU ARE LOST", True, (0, 0, 0))
-                score = font.render("YOUR SCORE IS : " +
-                                    str(self.score), True, (0, 0, 0))
+                score = font.render("YOUR SCORE IS : " +str(self.score), True, (0, 0, 0))
                 text_surface = font.render(self.user_name, True, (0, 0, 0))
-                self.screen.blit(text_surface,  (x, y + 100))
-                self.screen.blit(score, (x, y + 200))
-                self.screen.blit(lost, (x, y))
-                self.screen.blit(sorry, (x, y - 200))
+                self.screen.blit(text_surface,  (x-100, y + 50))
+                self.screen.blit(score, (x-100, y+350))
+                self.screen.blit(lost, (x-100, y+200))
+                self.screen.blit(sorry, (x-100, y-100))
 
             show_score(250, 200)
             cry_img = pygame.image.load("cry.png")
-            self.screen.blit(cry_img, (300, 500))
+            self.screen.blit(cry_img, (700, 100))
             mixer.init()
             cry_sound = mixer.Sound("cry_sound.wav")  # cry sound
             cry_sound.play()
@@ -298,7 +296,9 @@ class super_hero:
                         self.start = 1
                         run = False
             self.screen.fill(self.bg_color)
-            font = pygame.font.Font(None, 50)
+            self.screen.blit(super_hero.logo_img,(700,200))
+            font = pygame.font.Font(None, 70)
+            font1 = pygame.font.Font('logo.ttf',100)
 
             textX = 250
             textY = 200
@@ -307,19 +307,20 @@ class super_hero:
                 welcome = font.render(
                     "Welcome to Super Hero ", True, (0, 0, 0))
                 Instruction = font.render(
-                    "Press Space bar to start the game", True, (0, 0, 0))
+                    "Press SPACE bar to start the game", True, (0, 0, 0))
                 name = font.render("Enter your name: ", True, (0, 0, 0))
-                base_font = pygame.font.Font(None, 60)
+                base_font = pygame.font.Font(None, 70)
+                logo = font1.render("SUPER HERO",True,(255,20,10))
                 #user_name = 'Hello '
                 # if event.type == pygame.KEYDOWN:
                 #user_name += event.unicode
-                text_surface = base_font.render(
-                    self.user_name, True, (0, 0, 0))
-                self.screen.blit(welcome, (x, y - 200))
-                self.screen.blit(Instruction, (x - 125, y + 300))
-                self.screen.blit(name, (x - 150, y - 50))
-                self.screen.blit(text_surface, (x + 200, y - 55))
-                #elf.screen.blit(self.logosh_img, (x - 150, y + 100))
+                text_surface = base_font.render(self.user_name, True, (0, 0, 0))
+                self.screen.blit(welcome, (x+20,y - 300))
+                self.screen.blit(Instruction, (x - 150, y + 400))
+                self.screen.blit(name, (x - 180, y - 180))
+                self.screen.blit(text_surface, (x+230 , y - 180))
+                self.screen.blit(logo,(x-170,y+50))
+    
 
             show_details(300, 350)
             pygame.display.update()
