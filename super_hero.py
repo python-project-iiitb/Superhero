@@ -61,6 +61,7 @@ class super_hero:
         flag_img = pygame.image.load("flag.png")
         gunman_img=pygame.image.load("gunman.png")
         bullet_img=pygame.image.load("bullet.png")
+        f_coin = pygame.image.load("flatcoin.png")
 
         # setting the coodinates of all required images and planks
         sh_img_ch_x = 0
@@ -122,9 +123,9 @@ class super_hero:
                 run = False
 
             # making all the planks move
+            x=0.5
             for i in lines.values():
-                pygame.draw.line(self.screen, (0, 0, 0), [
-                                 i[0], i[1]], [i[2], i[3]], 5)
+                pygame.draw.line(self.screen, (0, 0, 0), [i[0], i[1]], [i[2], i[3]], 5)
                 i[0] += i[4]
                 i[2] += i[5]
                 if (i[2] == 1200):
@@ -143,8 +144,18 @@ class super_hero:
                     i[1] = 2000
 
             # displaying all coins
-            for i in coins.values():
-                functions.coin(i[0], i[1], c_img, self.screen)        
+            if(count>=0 and count<100):
+                for i in coins.values():
+                    functions.coin(i[0], i[1], c_img, self.screen)
+            elif(count>=100 and count<200):
+                for i in coins.values():
+                    functions.coin(i[0], i[1], f_coin, self.screen)
+
+            if(count==200):
+                count=0
+            count+=1     
+                    
+
 
             # losing the game when touched by planks
             for i in lines.values():
@@ -152,9 +163,7 @@ class super_hero:
                     self.lost += 1
                     run = False
 
-            # displaying the images of dragon and cactus and flag and gunman
-            #self.screen.blit(bullet_img,(150,460))
-            #self.screen.blit(bullet_img,(1050,400))
+            # displaying the images 
             self.screen.blit(gunman_img,(10,360))
             self.screen.blit(drg_img, (1050, 460))
             self.screen.blit(drg_img, (1050, 360))
@@ -223,7 +232,7 @@ class super_hero:
 
 
 
-            c = (self.sh_img_x - 1050)**2 + (self.sh_img_y + 5)**2 - 100**2
+            c = (self.sh_img_x - 1050)**2 + (self.sh_img_y + 5)**2 - 50**2
             if(c < 0):
                 self.win = 1
             show_score(textX, textY)
@@ -237,13 +246,20 @@ class super_hero:
             # background music
             winner_sound = mixer.Sound("winner_sound.wav")
             winner_sound.play()
+            trophy=pygame.image.load("trophy.png")
+            flowers=pygame.image.load("flowers.png")
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
             self.screen.fill(self.bg_color)
+            font1 = pygame.font.Font('logo.ttf',100)
+            congo = font1.render("Congratulations!!",True,(255,0,0))
             font = pygame.font.Font(None, 100)
             winner = font.render("YOU WIN!", True, (0, 0, 0))
-            self.screen.blit(winner, (200, 200))
+            self.screen.blit(flowers,(0,0))
+            self.screen.blit(winner, (400, 60))
+            self.screen.blit(congo,(250,160))
+            self.screen.blit(trophy,(350,310))
             pygame.display.update()
 
     def lost_screen(self):
@@ -295,10 +311,10 @@ class super_hero:
                     if event.key == pygame.K_SPACE:
                         self.start = 1
                         run = False
+            font1 = pygame.font.Font('logo.ttf',100)            
             self.screen.fill(self.bg_color)
             self.screen.blit(super_hero.logo_img,(700,200))
             font = pygame.font.Font(None, 70)
-            font1 = pygame.font.Font('logo.ttf',100)
 
             textX = 250
             textY = 200
