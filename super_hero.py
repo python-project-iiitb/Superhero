@@ -8,8 +8,8 @@ class super_hero:
     logo_img = pygame.image.load("logo.png")
 
     def __init__(self):
+        # initializing and playing background music by importing mixer from pygame.
         mixer.init()
-        # background music
         mixer.music.load("background_music.flac")
         mixer.music.play(-1)
 
@@ -18,12 +18,15 @@ class super_hero:
         pygame.display.set_caption("SUPER HERO")
 
         # displaying the screen
+        # size of the screen
         self.screen = pygame.display.set_mode((1200, 920))
+        # background colour of the screen
         self.bg_color = (120, 220, 220)
         self.lost = 0
         self.score = 0
         self.start = 0
         self.user_name = ''
+        # coordinates of the superhero initially
         self.sh_img_x = 25
         self.sh_img_y = 880
         self.win = 0
@@ -31,7 +34,7 @@ class super_hero:
     def run_sh(self):
         run = True
 
-        # dictionary of lines containing its coordinates and moving speed
+        # dictionary of logs containing its coordinates and speed with which they move.
         lines = {
             'l1': [200, 820, 1000, 820, 1, 1], 'l2': [100, 720, 500, 720, 1, 1],
             'l3': [600, 720, 1100, 720, 1, 1], 'l4': [100, 620, 350, 620, 1, 1],
@@ -52,7 +55,7 @@ class super_hero:
             'c24': [30, 165], 'c25': [1140, 65], 'c26': [25, 65]
         }
 
-        # loading all the required images(superhero,dragon,fire,cactus,coin)
+        # loading all the required images(superhero,dragon,fire,cactus,coins,gunman,bullets,flag)
         sh_img = pygame.image.load("sh2.png")
         drg_img = pygame.image.load("dragon.png")
         fire_img = pygame.image.load("fire.png")
@@ -74,11 +77,10 @@ class super_hero:
         textX = 50
         textY = 35
         def show_score(x, y):
-            score = font.render(
-                "Score :" + " " + str(self.score), True, (0, 0, 0))
+            score = font.render("Score :" + " " + str(self.score), True, (0, 0, 0))
             self.screen.blit(score, (x, y))
 
-            # an infinite loop to keep the screeen active
+        # an infinite loop to keep the screeen active while we are playing
         count=0
         while run:
             if((self.win and self.score > 0) or self.lost != 0):
@@ -86,7 +88,8 @@ class super_hero:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
-                if event.type == pygame.KEYDOWN:
+                 # accessing the keyboard keys to move the character in game
+                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
                         sh_img_ch_y = -1
                     if event.key == pygame.K_DOWN:
