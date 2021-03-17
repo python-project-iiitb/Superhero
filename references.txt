@@ -1,0 +1,13 @@
+References:
+
+1. www.pygame.org
+
+2. https://realpython.com/pygame-a-primer/
+
+3. https://youtu.be/FfWpgLFMI7w
+
+4. https://www.flaticon.com/
+
+5. https://www.pngwing.com/
+
+6. https://freesound.org/
