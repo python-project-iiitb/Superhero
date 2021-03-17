@@ -1,0 +1,7 @@
+System Requirements
+
+
+1. Python3
+2. Pygame
+3. Any Texteditor or IDE
+
