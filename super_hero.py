@@ -89,7 +89,7 @@ class super_hero:
                 if event.type == pygame.QUIT:
                     run = False
                  # accessing the keyboard keys to move the character in game
-                 if event.type == pygame.KEYDOWN:
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
                         sh_img_ch_y = -1
                     if event.key == pygame.K_DOWN:
