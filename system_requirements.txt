@@ -1,7 +1,20 @@
 System Requirements
 
+1.  Operating System : Windows 10 or any Linux distro.
+2.  Python3
+3.  Pygame
+4.  Any Texteditor or IDE
 
-1. Python3
-2. Pygame
-3. Any Texteditor or IDE
+
+Instruction for Installing Pygame :
+  For Windows : Run the command 'pip install pygame'.
+
+  For Debian/Ubuntu/Mint : Run the command 'sudo apt-get install python3-pygame'.
+  
+  Note : If you are using Pycharm IDE you can download the pycharm package.
+
+ 
+  
+ 
+
 
