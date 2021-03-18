@@ -74,11 +74,10 @@ class super_hero:
         textX = 50
         textY = 35
         def show_score(x, y):
-            score = font.render(
-                "Score :" + " " + str(self.score), True, (0, 0, 0))
+            score = font.render("Score :" + " " + str(self.score), True, (0, 0, 0))
             self.screen.blit(score, (x, y))
 
-            # an infinite loop to keep the screeen active
+        # an infinite loop to keep the screeen active
         count=0
         while run:
             if((self.win and self.score == 26) or self.lost != 0):
@@ -118,7 +117,6 @@ class super_hero:
 
             # losing the game when touched by cactus
             if (functions.cactus_out(self.sh_img_x, self.sh_img_y)):
-                print("lost")
                 self.lost += 1
                 run = False
 
@@ -191,11 +189,9 @@ class super_hero:
 
             # losing the game when burnt due to fire
             if (functions.fire_out(self.sh_img_x, self.sh_img_y, fire_img_x, 490)):
-                print("you are lost")
                 self.lost += 1
                 run = False
             if (functions.fire_out(self.sh_img_x, self.sh_img_y, fire_img_x, 390)):
-                print("you are lost")
                 self.lost += 1
                 run = False
 
@@ -278,14 +274,14 @@ class super_hero:
             textY = 200
 
             def show_score(x, y):
-                sorry = font.render("SORRRYYY!!! ", True, (0, 0, 0))
-                lost = font.render("YOU ARE LOST", True, (0, 0, 0))
-                score = font.render("YOUR SCORE IS : " +str(self.score), True, (0, 0, 0))
-                text_surface = font.render(self.user_name, True, (0, 0, 0))
-                self.screen.blit(text_surface,  (x-100, y + 50))
-                self.screen.blit(score, (x-100, y+350))
-                self.screen.blit(lost, (x-100, y+200))
-                self.screen.blit(sorry, (x-100, y-100))
+                sorry = font.render("GAME OVER!!! ", True, (0, 0, 0))
+                lost = font.render("TRY AGAIN  "+str(self.user_name), True, (0, 0, 0))
+                score = font.render("SCORE : " +str(self.score), True, (0, 0, 0))
+                #text_surface = font.render(self.user_name, True, (0, 0, 0))
+                #self.screen.blit(text_surface,  (x-100, y + 200))
+                self.screen.blit(score, (x-100, y-100))
+                self.screen.blit(lost, (x-100, y+300))
+                self.screen.blit(sorry, (x-100, y+100))
 
             show_score(250, 200)
             cry_img = pygame.image.load("cry.png")
@@ -316,8 +312,6 @@ class super_hero:
             self.screen.blit(super_hero.logo_img,(700,200))
             font = pygame.font.Font(None, 70)
 
-            textX = 250
-            textY = 200
 
             def show_details(x, y):
                 welcome = font.render(
@@ -349,5 +343,5 @@ if __name__ == "__main__":
         sh.run_sh()
     if (sh.lost != 0):
         sh.lost_screen()
-    if(sh.win and sh.score == 0):
+    if(sh.win and sh.score == 26):
         sh.win_screen()
