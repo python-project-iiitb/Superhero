@@ -14,15 +14,12 @@ Description of the project:
                 Next 5 days: Fixing the errors and other pending work in the game developed.
                 And 2 more days will be alloted for the members to complete the work if they delayed it due to some reasons.
                 
-  Work is divided in the following manner:
-         Members 1 and 2:Finding images and background music from various resources and setting them up to the game.
-         Members 3 and 4:Ensuring that all the objects in game move as required.
-          
-          
- A few References: 
-                1.www.pygame.org
-                2.https://realpython.com/pygame-a-primer/
-                3.https://youtu.be/FfWpgLFMI7w
-                4.https://freesound.org/
-          
-        
+
+Instructions to run the code/game:
+Firstly enter your name and click SPACE_BAR to start playing the game.
+Use the arrow keys to control our superhero for moving in that specific direction.
+There are moving and stationary obstacles (cactus, planks, fire, bullets, gunmen, dragon)
+if one comes in contact with any of the obstacles he/she lose
+If the player collects all 26 coins and reach the flag he/she wins the game.
+                
+ 
