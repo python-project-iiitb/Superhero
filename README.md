@@ -24,11 +24,11 @@ We are creating a game.The game we are going to create as a part of our python p
   -  And 2 more days will be alloted for the members to complete the work if they delayed it due to some reasons.
                 
 
-Instructions to run the code/game:
-1. Firstly enter your name and click SPACE_BAR to start playing the game.
-2. Use the arrow keys to control our superhero for moving in that specific direction.
-3. There are moving and stationary obstacles (cactus, planks, fire, bullets, gunmen, dragon)
-4. if one comes in contact with any of the obstacles he/she lose
-5. If the player collects all 26 coins and reach the flag he/she wins the game.
+Instructions to play the game:
+- Firstly enter your name and click SPACE_BAR to start playing the game.
+- Use the arrow keys to control our superhero for moving in that specific direction.
+- There are moving and stationary obstacles (cactus, planks, fire, bullets, gunmen, dragon)
+- if one comes in contact with any of the obstacles he/she lose
+- If the player collects all 26 coins and reach the flag he/she wins the game.
                 
  
