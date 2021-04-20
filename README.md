@@ -27,13 +27,17 @@ We are creating a game.The game we are going to create as a part of our python p
   1. Python-3 
   2. Pygame
 
+ # Instructions for installing pygame:
+ 1. Installing via `pip`
+    - Run the command `pip install pygame` or `pip3 install pygame`.
+
  # Instructions to download the game:
  - Download the source code from the green button named `Code`.
  - After downloading the code, unzip it.
  - If you are a Linux user
-    >    Run the command `python3 super-hero.py`.
+   - Run the command `python3 super-hero.py`.
  - If you are a Windows user
-    >    Run the command `python super-hero.py` .
+   - Run the command `python super-hero.py` .
  - Enjoy the game :) 
                 
 
