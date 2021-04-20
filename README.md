@@ -32,7 +32,7 @@ We are creating a game.The game we are going to create as a part of our python p
     - Run the command `pip install pygame` or `pip3 install pygame`.
  2. Installing with `apt`
     - Run the command `sudo apt-get install python3-pygame`.
-    For any problems vist this [link](https://www.pygame.org/wiki/GettingStarted).
+ - For any problems vist this [link](https://www.pygame.org/wiki/GettingStarted).
 
  # Instructions to download the game:
  - Download the source code from the green button named `Code`.
