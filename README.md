@@ -54,5 +54,14 @@ We are creating a game.The game we are going to create as a part of our python p
 - There are moving and stationary obstacles (cactus, planks, fire, bullets, gunmen, dragon)
 - if one comes in contact with any of the obstacles he/she lose
 - If the player collects all 26 coins and reach the flag he/she wins the game.
+
+# Afew references:
+-  www.pygame.org
+- https://realpython.com/pygame-a-primer/
+- https://youtu.be/FfWpgLFMI7w
+- https://www.flaticon.com/
+- https://www.pngwing.com/
+- https://freesound.org/
+
                 
  
