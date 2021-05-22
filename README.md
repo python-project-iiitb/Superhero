@@ -42,9 +42,9 @@ We are creating a game.The game we are going to create as a part of our python p
  - Download the source code from the green button named `Code`.
  - After downloading the code, unzip it.
  - You can also clone the repository to your local machine by executing the command
-  > ```git clone https://github.com/python-project-iiitb/Superhero.git```
+  > `git clone https://github.com/python-project-iiitb/Superhero.git`
  - If you are a Linux user
-   - Run the command ```python3 super-hero.py```.
+   - Run the command `python3 super-hero.py`.
  - If you are a Windows user
    - Run the command `python super-hero.py` .
  - Enjoy the game :) 
