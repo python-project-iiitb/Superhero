@@ -58,12 +58,12 @@ We are creating a game. The game we are going to create as a part of our python 
 - If the player collects all 26 coins and reach the flag he/she wins the game.
 
 # A few references:
--  www.pygame.org
-- https://realpython.com/pygame-a-primer/
+-  https://www.pygame.org
+- https://realpython.com/pygame-a-primer
 - https://youtu.be/FfWpgLFMI7w
-- https://www.flaticon.com/
-- https://www.pngwing.com/
-- https://freesound.org/
+- https://www.flaticon.com
+- https://www.pngwing.com
+- https://freesound.org
 
                 
  
